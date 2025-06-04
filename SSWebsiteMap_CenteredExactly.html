@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Soccer Shots Map (Locked Center)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  var map = L.map('map').setView([49.2529176, -122.4486484], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  var customIcon = L.icon({
+    iconUrl: 'data:image/png;base64,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',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
+  });
+
+  var locations = [['City Park', 49.0899942, -122.6510862, 'https://fraservalley.soccershots.com/search?loc=138'], ['Richard Bulpitt Elementary', 49.1436288, -122.6421393, 'https://fraservalley.soccershots.com/search?loc=70'], ['Albion Sports Complex', 49.1900113, -122.5651194, 'https://fraservalley.soccershots.com/search?loc=203'], ['Heritage Park Middle School', 49.142228, -122.2910161, 'https://fraservalley.soccershots.com/search?loc=39'], ['Chalmers Elementary', 49.1404935, -122.9102296, 'https://fraservalley.soccershots.com/search?loc=150'], ['Davie Jones Elementary', 49.2212698, -122.6840039, 'https://fraservalley.soccershots.com/search?loc=105'], ['Clayton Park', 49.1306527, -122.7086036, 'https://fraservalley.soccershots.com/search?loc=45'], ['Cloverdale Traditional Elementary', 49.1053484, -122.7291871, 'https://fraservalley.soccershots.com/search?loc=43'], ['Creekside Elementary', 49.1674648, -122.8414698, 'https://fraservalley.soccershots.com/search?loc=191'], ['Fraser Wood Park', 49.1956773, -122.7660827, 'https://fraservalley.soccershots.com/search?loc=174'], ['Jessie Lee Elementary', 49.0400436, -122.7952947, 'https://fraservalley.soccershots.com/search?loc=82'], ['North Ridge Elementary', 49.114799, -122.8501074, 'https://fraservalley.soccershots.com/search?loc=149'], ['Evans Elementary', 49.1383688, -121.9767582, 'https://fraservalley.soccershots.com/search?loc=999'], ['Bateman Park', 49.0729423, -122.2654797, 'https://fraservalley.soccershots.com/pd/6561/summer-2025-abbotsford-bateman-park-saturda?st_t=1072&st_ti=1438&returncom=productlist&source=search'], ['Mountain Elementary', 49.0426693, -122.2354934, 'https://fraservalley.soccershots.com/search?st_t=1072&st_ti=1438&loc=9'], ['Aldergrove Athletic Park', 49.0525446, -122.4809006, 'https://fraservalley.soccershots.com/search?st_t=1072&st_ti=1438&loc=173']];
+
+  locations.forEach(function(loc) {
+    L.marker([loc[1], loc[2]], {icon: customIcon})
+      .addTo(map)
+      .bindPopup('<a href="' + loc[3] + '" target="_blank">' + loc[0] + ' – Register</a>');
+  });
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94a9ea6aba842850',t:'MTc0OTA2NjE3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
